@@ -11,6 +11,7 @@ import Lottie from "react-lottie";
 import { loop } from "@react-three/fiber/dist/declarations/src/core/loop";
 import animationData from '@/data/confetti.json';
 import { IoCopyOutline } from "react-icons/io5";
+import { BackgroundBeamsWithCollision } from "./background-beams-with-collision";
 
 export const BentoGrid = ({
   className,
@@ -54,10 +55,16 @@ export const BentoGridItem = ({
 }) => {
   const [copied, setCopied] = useState(false);
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText('alimdsufiyan89@gmail.com')
+
+    setCopied(true)
+  }
+
   return (
     <div
       className={cn(
-        "group/bento relative overflow-hidden shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border p-4 md:p-0 border-neutral-200 bg-white  transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none mx-5 md:mx-0",
+        "group/bento relative overflow-hidden shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border p-4 md:p-0 border-neutral-200 bg-white transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none mx-5 md:mx-0 text-white",
         className
       )}
       style={{
@@ -66,7 +73,7 @@ export const BentoGridItem = ({
           "linear-gradient(90deg, rgba(4,7,29,1) 0% , rgba(12,14,35,1) 100% ) ",
       }}
     >
-      <div className={`${id === 6} && flex justify-center h-full`}>
+      <div className={`${id === 6 && `flex justify-center`} h-full`}>
         <div className="w-full h-full absolute">
           {img && (
             <img
@@ -90,11 +97,13 @@ export const BentoGridItem = ({
           )}
         </div>
         {id === 6 && (
-          <BackgroundGradientAnimation>
-            <div className="absolute  z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-2xl text-center md:text-4xl w-full h-full">
+          <BackgroundBeamsWithCollision className="group-hover/bento:translate-x-1 transition duration-200 ">
+            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-2xl text-center md:text-2xl w-full
+             h-72 md:h-40 md:mt-7 ">
               {title}
             </div>
-            <div className={`absolute -bottom-5 right-10`}>
+            <div className="h-96 relative flex items-end bottom-35 md:-bottom-8 md:h-10 z-20">
+              <div className={`absolute -bottom-5 right-0 w-28 h-28 `}>
               <Lottie options={{
                 loop:copied,
                 autoplay:copied,
@@ -105,25 +114,27 @@ export const BentoGridItem = ({
               }}
               />
               </div>
-              <MagicButton 
+              <MagicButton
             title={copied ? 'Copied!':'Copy my Email'}
             icon={<IoCopyOutline />}
             position="left"
-            otherClasses="flex items-center"
+            otherClasses="!bg-[#161a31]"
+            handleClick={handleCopy}
             />
-           
-          </BackgroundGradientAnimation>
+            </div>
+            
+          </BackgroundBeamsWithCollision>
         )}
         {id === 3 && (
-          <BackgroundLines>
+          <BackgroundLines >
             <div className="absolute top-33 left-43 md:top-28 md:left-12 font-sans h-full font-extralight text-sm md:text-xs text-[#c1c2d3] dark:text-neutral-300 z-10 lg:text-base tracking-wider">
               {description}
             </div>
             <div className="absolute  z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-3xl w-full h-full">
               {title}
             </div>
-            <div className="absolute bottom-25 left-50 md:bottom-15 md:left-8">
-              <MagicButton 
+            <div className="absolute bottom-25 left-50 md:bottom-15 md:left-18">
+              <MagicButton
               title='View Skills'
               icon={<FaArrowCircleRight size={20} />}
               position="right"
