@@ -64,14 +64,15 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "group/bento relative overflow-hidden shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border p-4 md:p-0 border-neutral-200 bg-white transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none mx-5 md:mx-0 text-white",
-        className
+        "group/bento relative overflow-hidden shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border p-4 md:p-0 border-neutral-200 bg-white transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-gradient-to-r from-[#04071d] to-[#0c0e23] dark:shadow-none mx-5 md:mx-0 dark:text-white text-neutral-900",
+        className,
+        (id == 1 || id == 4) ? 'bg-gradient-to-r from-[#04071d] to-[#0c0e23] text-white':''
       )}
-      style={{
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0% , rgba(12,14,35,1) 100% ) ",
-      }}
+      // style={{
+      //   background: "rgb(4,7,29)",
+      //   backgroundColor:
+      //     "linear-gradient(90deg, rgba(4,7,29,1) 0% , rgba(12,14,35,1) 100% ) ",
+      // }}
     >
       <div className={`${id === 6 && `flex justify-center`} h-full`}>
         <div className="w-full h-full absolute">
@@ -98,7 +99,7 @@ export const BentoGridItem = ({
         </div>
         {id === 6 && (
           <BackgroundBeamsWithCollision className="group-hover/bento:translate-x-1 transition duration-200 ">
-            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-2xl text-center md:text-2xl w-full
+            <div className="absolute z-50 inset-0 flex items-center justify-center text-neutral-700 dark:text-white font-bold px-4 pointer-events-none text-2xl text-center md:text-2xl w-full
              h-72 md:h-40 md:mt-7 ">
               {title}
             </div>
@@ -127,7 +128,7 @@ export const BentoGridItem = ({
         )}
         {id === 3 && (
           <BackgroundLines >
-            <div className="absolute top-33 left-43 md:top-28 md:left-12 font-sans h-full font-extralight text-sm md:text-xs text-[#c1c2d3] dark:text-neutral-300 z-10 lg:text-base tracking-wider">
+            <div className="absolute top-33 left-43 md:top-28 md:left-12 font-sans h-full font-normal text-md md:text-xs text-neutral-800 dark:text-neutral-300 z-10 lg:text-base tracking-wider">
               {description}
             </div>
             <div className="absolute  z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-3xl w-full h-full">
